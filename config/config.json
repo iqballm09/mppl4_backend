@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "foodpay",
+    "host": "127.0.0.1",
+    "storage": "foodpay.db",
+    "dialect": "sqlite"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "foodpay",
+    "host": "127.0.0.1",
+    "storage": "foodpay.db",
+    "dialect": "sqlite"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "foodpay",
+    "host": "127.0.0.1",
+    "storage": "foodpay.db",
+    "dialect": "sqlite"
+  }
+}
