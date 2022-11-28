@@ -17,7 +17,7 @@ const createPayment = async(req, res) => {
     if (!card) return res.status(404).send(`Card with UserID: ${ userID } is not found`);    
     // Get merchant by id
     const merchant = await Merchant.findOne({
-        where: { id: req.body.id }
+        where: { id: req.body.merchantID }
     });
     // Proceed to payment
     if (req.body.pinNumber) {
