@@ -40,7 +40,7 @@ router.get("/merchants/id", verifyMerchant, getMerchantById);
 router.put('/merchants/id/edit', verifyMerchant, updateMerchant);
 
 // Payment endpoints
-router.post('/payments/:userID', createPayment); // QR code
+router.post('/payments/cardID', createPayment); // QR code
 router.get('/payments/cardID', verifyUser, getAllPayments); // By card id
 router.get('/payments/id/cardID', verifyUser, getPaymentById);
 
