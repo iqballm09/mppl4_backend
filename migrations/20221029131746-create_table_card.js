@@ -11,7 +11,7 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING(100),
-        defaultValue: "Nama kartu",
+        defaultValue: "Ilkomerz Card",
         validate: {
           notEmpty: { msg: "Card must have name" },
           notNull: { msg: "Card name must not null" }
