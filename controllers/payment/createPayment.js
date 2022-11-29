@@ -33,8 +33,6 @@ const createPayment = async(req, res) => {
         // Update income of merchant
         const updatedIncome = merchant.income + req.body.amount;
         merchant.set({
-            foodCourtName: req.body.foodcourtName,
-            merchantName: req.body.merchantName,
             income: updatedIncome
         });
         // Create payment
@@ -42,7 +40,7 @@ const createPayment = async(req, res) => {
             CardID: card.id,
             amount: req.body.amount,
             foodcourtName: req.body.foodcourtName,
-            merchantName: req.body.merchantName,
+            merchantName: merchant.name,
             date: new Date().toLocaleDateString()
         });
         await payment.save();
