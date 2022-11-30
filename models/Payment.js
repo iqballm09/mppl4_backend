@@ -21,6 +21,9 @@ const Payment = sequelize.define("Payment", {
             key: 'id'
         }
     },
+    name_user: {
+        type: Sequelize.STRING(200),
+    },
     amount: {
         type: Sequelize.DECIMAL(20),
         defaultValue: 0

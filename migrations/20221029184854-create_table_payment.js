@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
+      name_user: {
+        type: Sequelize.STRING(200),
+      },
       amount: {
         type: Sequelize.DECIMAL(20),
         defaultValue: 0
@@ -23,7 +26,7 @@ module.exports = {
         type: Sequelize.DATEONLY
       },
       createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE 
+      updatedAt: Sequelize.DATE
     });
   },
 
