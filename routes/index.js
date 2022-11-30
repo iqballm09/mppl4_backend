@@ -12,7 +12,7 @@ const updateMerchant = require('../controllers/merchant/updateMerchant');
 const { getCard, getAllCards } = require('../controllers/card/readCard');
 const updateCard = require("../controllers/card/updateCard");
 const createPayment = require("../controllers/payment/createPayment");
-const { getPaymentById, getAllPayments } = require("../controllers/payment/readPayment");
+const { getPaymentById, getAllPayments, getAllPaymentMerchant } = require("../controllers/payment/readPayment");
 const createUserTopUp = require("../controllers/topupUser/createTopupUser");
 const { getAllUserTopUps, getUserTopUpById } = require("../controllers/topupUser/readTopupUser");
 const createCashierTopUp = require("../controllers/topupCashier/createTopupCashier");
@@ -38,6 +38,7 @@ router.post('/merchants/login', getMerchantForLogin); // token ada pada header '
 router.get('/merchants', getAllMerchants);
 router.get("/merchants/id", verifyMerchant, getMerchantById);
 router.put('/merchants/id/edit', verifyMerchant, updateMerchant);
+router.get('/merchants/id/transactions', verifyMerchant, getAllPaymentMerchant);
 
 // Payment endpoints
 router.post('/payments/cardID', verifyUser, createPayment); // QR code

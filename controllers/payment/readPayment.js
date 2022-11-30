@@ -1,4 +1,5 @@
 const Payment = require("../../models/Payment");
+const Merchant = require("../../models/Merchant");
 const Card = require("../../models/Card");
 const dotenv = require("dotenv");
 
@@ -39,7 +40,22 @@ const getPaymentById = async(req, res) => {
     return res.status(200).json({ payment });
 }
 
+const getAllPaymentMerchant = async(req, res) => {
+    // Get payload
+    const merchantID = req.merchant.id;
+    // Get all payments
+    try {
+        const payments = await Payment.findAll({
+            where: { MerchantID: merchantID }
+        });
+        return res.status(200).json({ payments });
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 module.exports = {
     getAllPayments,
-    getPaymentById
+    getPaymentById,
+    getAllPaymentMerchant
 };
