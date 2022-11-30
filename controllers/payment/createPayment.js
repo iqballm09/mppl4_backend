@@ -8,24 +8,24 @@ const User = require("../../models/User");
 dotenv.config();
 
 // Create payment
-const createPayment = async(req, res) => {
+const createPayment = async (req, res) => {
     // Get payload
     const userID = req.user.id;
     // get user data
     const user = await User.findOne({
         where: { id: userID }
     });
-    if (!user) return res.status(404).send(`User with email: ${ userID } is not found`);
+    if (!user) return res.status(404).send(`User with id: ${userID} is not found`);
     // Read card
-    const card = await Card.findOne({ 
+    const card = await Card.findOne({
         where: { UserID: userID }
     });
-    if (!card) return res.status(404).send(`Card with UserID: ${ userID } is not found`);    
+    if (!card) return res.status(404).send(`Card with UserID: ${userID} is not found`);
     // Get merchant by id
     const merchant = await Merchant.findOne({
         where: { id: req.body.merchantID }
     });
-    if (!merchant) return res.status(404).send(`Merchant with id: ${ req.body.merchantID } is not found`);
+    if (!merchant) return res.status(404).send(`Merchant with id: ${req.body.merchantID} is not found`);
     // Proceed to payment
     if (req.body.pinNumber) {
         // Checking if pin number is correct
@@ -34,7 +34,7 @@ const createPayment = async(req, res) => {
         // Update saldo on card
         const updatedSaldo = card.saldo - req.body.amount;
         if (updatedSaldo < 0) return res.status(200).send(`Card saldo with CardID: ${card.id} is not enough`);
-        card.set({ 
+        card.set({
             saldo: updatedSaldo
         });
         // Update income of merchant
