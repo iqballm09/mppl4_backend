@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const Card = require("../../models/Card");
 const dotenv = require("dotenv");
 const Merchant = require("../../models/Merchant");
+const User = require("../../models/User");
 
 dotenv.config();
 
@@ -10,6 +11,11 @@ dotenv.config();
 const createPayment = async(req, res) => {
     // Get payload
     const userID = req.user.id;
+    // get user data
+    const user = await User.findOne({
+        where: { id: userID }
+    });
+    if (!user) return res.status(404).send(`User with email: ${ userID } is not found`);
     // Read card
     const card = await Card.findOne({ 
         where: { UserID: userID }
@@ -38,6 +44,7 @@ const createPayment = async(req, res) => {
         });
         // Create payment
         const payment = await Payment.create({
+            name_user: user.name,
             CardID: card.id,
             amount: req.body.amount,
             MerchantID: merchant.id,
