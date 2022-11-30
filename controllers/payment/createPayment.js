@@ -19,6 +19,7 @@ const createPayment = async(req, res) => {
     const merchant = await Merchant.findOne({
         where: { id: req.body.merchantID }
     });
+    if (!merchant) return res.status(404).send(`Merchant with id: ${ req.body.merchantID } is not found`);
     // Proceed to payment
     if (req.body.pinNumber) {
         // Checking if pin number is correct
