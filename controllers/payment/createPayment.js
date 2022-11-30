@@ -39,6 +39,7 @@ const createPayment = async(req, res) => {
         const payment = await Payment.create({
             CardID: card.id,
             amount: req.body.amount,
+            MerchantID: merchant.id,
             foodcourtName: req.body.foodcourtName,
             merchantName: merchant.name,
             date: new Date().toLocaleDateString()
