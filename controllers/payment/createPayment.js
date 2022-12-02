@@ -38,7 +38,7 @@ const createPayment = async (req, res) => {
             saldo: updatedSaldo
         });
         // Update income of merchant
-        const updatedIncome = merchant.income + req.body.amount;
+        const updatedIncome = Number(merchant.income) + Number(req.body.amount);
         merchant.set({
             income: updatedIncome
         });
